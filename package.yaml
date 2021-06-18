@@ -1,0 +1,20 @@
+name:                FizzBuzzHaskellPropertyBased
+version:             0.1.0.0
+github:              "ploeh/FizzBuzzHaskellPropertyBased"
+license:             GPL-3.0-or-later
+author:              "Mark Seemann"
+copyright:           "2021 Mark Seemann"
+
+extra-source-files:
+- README.md
+- COPYING
+
+description:         Please see the README on GitHub at https://github.com/ploeh/FizzBuzzHaskellPropertyBased
+
+dependencies:
+- base
+
+library:
+  source-dirs: src
+  ghc-options:
+  - -Wall
