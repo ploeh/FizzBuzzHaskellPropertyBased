@@ -2,6 +2,7 @@
 module Main where
 
 import Data.Maybe
+import Data.List
 import Text.Read
 import FizzBuzz
 import Test.Framework
@@ -23,4 +24,11 @@ main =
       in counterexample
           (show range ++ "->" ++ show actual) $
           any (\x -> isJust (readMaybe x :: Maybe Int)) actual
+    ,
+    testProperty "At least one Fizz in 3 consecutive values" $ \ (i :: Int) ->
+      let range = [i..i+2]
+          actual = fizzBuzz <$> range
+      in counterexample
+          (show range ++ "->" ++ show actual) $
+          any ("Fizz" `isPrefixOf`) actual
   ]
