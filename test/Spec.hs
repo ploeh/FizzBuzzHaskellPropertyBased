@@ -31,4 +31,11 @@ main =
       in counterexample
           (show range ++ "->" ++ show actual) $
           any ("Fizz" `isPrefixOf`) actual
+    ,
+    testProperty "Only one Buzz in 5 consecutive values" $ \ (i :: Int) ->
+      let range = [i..i+4]
+          actual = fizzBuzz <$> range
+      in counterexample
+          (show range ++ "->" ++ show actual) $
+          1 == length (filter ("Buzz" `isSuffixOf`) actual)
   ]
