@@ -45,4 +45,14 @@ main =
       in counterexample
           (show range ++ "->" ++ show actual) $
           elem "Buzz" actual
+    ,
+    testProperty "Numbers round-trip" $ \ (i :: Int) ->
+      let range = [i..i+2]
+
+          actual = fizzBuzz <$> range
+
+          numbers = catMaybes $ readMaybe <$> actual
+      in counterexample
+          (show range ++ "->" ++ show actual) $
+          all (`elem` range) numbers
   ]
