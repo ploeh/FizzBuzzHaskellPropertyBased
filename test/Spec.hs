@@ -1,6 +1,8 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 module Main where
 
+import Data.Maybe
+import Text.Read
 import FizzBuzz
 import Test.Framework
 import Test.Framework.Providers.QuickCheck2
@@ -14,4 +16,11 @@ main =
       let i = seed * 3 * 5
           actual = fizzBuzz i
       in "FizzBuzz" === actual
+    ,
+    testProperty "At least one number in 3 consecutive values" $ \ (i :: Int) ->
+      let range = [i..i+2]
+          actual = fizzBuzz <$> range
+      in counterexample
+          (show range ++ "->" ++ show actual) $
+          any (\x -> isJust (readMaybe x :: Maybe Int)) actual
   ]
