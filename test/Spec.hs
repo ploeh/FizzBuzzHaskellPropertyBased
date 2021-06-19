@@ -38,4 +38,11 @@ main =
       in counterexample
           (show range ++ "->" ++ show actual) $
           1 == length (filter ("Buzz" `isSuffixOf`) actual)
+    ,
+    testProperty "At least one literal Buzz in 10 values" $ \ (i :: Int) ->
+      let range = [i..i+9]
+          actual = fizzBuzz <$> range
+      in counterexample
+          (show range ++ "->" ++ show actual) $
+          elem "Buzz" actual
   ]
